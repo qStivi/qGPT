@@ -2,7 +2,9 @@
 
 ## Overview
 
-**qGPT** is an ambitious project aimed at creating an adaptive, interactive chatbot that seamlessly integrates with multiple platforms and interfaces. Built as a modular Java application, qGPT is designed to engage users in meaningful conversations across various environments such as in-game chats, websites, and more.
+**qGPT** is an ambitious project aimed at creating an adaptive, interactive chatbot that seamlessly integrates with multiple platforms and interfaces. Built as a modular Java application, **qGPT** is designed to engage users in meaningful conversations across various environments such as in-game chats, websites, and more.
+
+One of the core innovations in qGPT is its **Inner Thoughts Bots**—a multi-bot system that allows the main bot to offload complex tasks to secondary bots, improving efficiency, scalability, and responsiveness.
 
 ## Purpose
 
@@ -13,14 +15,25 @@ The primary goal of this project is to develop a conversational AI that serves a
 - **Enhance Interactivity**: Go beyond simple text responses by integrating capabilities like executing in-game commands to enrich user engagement.
 - **Be Extensible and Scalable**: Utilize a modular architecture that allows for easy addition of new features and interfaces, making qGPT highly adaptable to future needs.
 
+### **Inner Thoughts Bots**
+
+**Inner Thoughts Bots** are secondary bots that offload complex tasks from the main bot to ensure qGPT remains responsive and efficient. These thought processes allow the main bot to delegate memory searches, complex data processing, or external API requests to the inner bots while continuing its primary tasks.
+
+- **Task Offloading**: The main bot delegates heavy-lifting tasks to inner bots, allowing for parallel processing of memory lookups, deep contextual analysis, or any long-running processes.
+- **Concurrency and Scalability**: Multiple inner bots can run concurrently, ensuring qGPT can handle multiple user interactions or tasks simultaneously.
+- **Communication and Task Management**: The main bot communicates with inner bots via a task management system, tracking task progress and retrieving results without interrupting the conversation flow.
+
+This architecture allows qGPT to stay focused on user interactions while delegating intensive tasks, optimizing both performance and responsiveness.
+
 ## Key Features
 
 - **Modular Architecture**: qGPT is structured with a core engine and separate interface modules (adapters), allowing it to connect to different platforms through well-defined interfaces. This design promotes scalability and ease of maintenance.
+- **Inner Thoughts Bots**: Offload complex tasks like memory searches or data processing to separate bots, allowing the main bot to maintain high responsiveness.
 - **Memory Management System**:
   - **Global Memory**: Stores public conversation data accessible to all users and interfaces.
   - **User Memory**: Maintains private, user-specific data for personalized interactions, ensuring data privacy and confidentiality.
 - **Contextual Formatting**: Responses are formatted according to the interface being used, providing a seamless user experience across platforms.
-- **Multi-Threading and Concurrency**: Each interface module operates on its own thread, enabling concurrent interactions without performance degradation.
+- **Multi-Threading and Concurrency**: Each interface module operates on its own thread, enabling concurrent interactions without performance degradation. The inner thoughts bots can also run in parallel with the main bot.
 - **Extensibility**: The system is designed to allow new interfaces and functionalities to be added with minimal impact on existing components.
 
 ## Use Cases
@@ -28,10 +41,11 @@ The primary goal of this project is to develop a conversational AI that serves a
 - **In-Game Assistant**: Interacts with players in-game, responds to chat messages, executes commands, and can adopt roles or personas to enhance gameplay.
 - **Website Chatbot**: Serves as an interactive assistant on websites, capable of guiding users, answering questions, and providing support.
 - **Personal Chat Buddy**: Available for direct messages, offering personalized conversations that adapt over time to the user's preferences and communication style.
+- **Task Offloading with Inner Thoughts Bots**: Offload intensive operations like data retrieval or complex calculations, keeping user interactions smooth and uninterrupted.
 
 ## Project Status
 
-This project is in its early stages and is being developed for fun during free time. It's a personal exploration into the capabilities of conversational AI and modular software design.
+This project is in its early stages and is being developed for fun during free time. It's a personal exploration into the capabilities of conversational AI, modular software design, and multi-bot systems.
 
 ## Vision
 
