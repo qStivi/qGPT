@@ -1,0 +1,76 @@
+# Ignore build output directories and compiled classes
+/target/
+/out/
+
+# Ignore Maven specific files
+/log/
+*.log
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# IntelliJ specific files and folders
+.idea/
+/*.iws
+/*.iml
+/modules.xml
+/legacy.xml
+/.idea_modules/
+/.idea/
+/.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/shelf/
+/.idea/**/dataSources/
+/.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/jdbc-drivers.xml
+.idea/**/dataSources/
+.idea/**/dataSources.local/
+/.idea/**/dataSources.remote.xml
+.idea/**/libraryDependencies.xml
+.idea/**/gradle.xml
+.idea/**/gradleOutputFile.xml
+.idea/**/vcs.xml
+.idea/**/shelf/
+
+# Ignore IntelliJ project settings and IDE files
+# These files are user-specific and do not need to be in version control
+*.ipr
+*.iws
+.idea/
+
+# Ignore generated Java files (e.g. classes)
+/**/classes/
+/**/generated/
+
+# Ignore Maven wrapper
+.mvn/
+
+# Eclipse specific files (if ever used)
+*.classpath
+*.project
+*.settings/
+
+# Windows and Mac OS specific
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+/logs
+*.log
+*.swp
+*.tmp
+
+# Exclude your environment variables and IDE settings
+.env
+.env.local
