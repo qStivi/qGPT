@@ -42,6 +42,7 @@ This architecture allows qGPT to stay focused on user interactions while delegat
 - **Website Chatbot**: Serves as an interactive assistant on websites, capable of guiding users, answering questions, and providing support.
 - **Personal Chat Buddy**: Available for direct messages, offering personalized conversations that adapt over time to the user's preferences and communication style.
 - **Task Offloading with Inner Thoughts Bots**: Offload intensive operations like data retrieval or complex calculations, keeping user interactions smooth and uninterrupted.
+- **Project Help**: You could aks the bot to keep vast amounts of information about a project, maybe even files. Using the memory search functionality the bot could then assist you more effectively than a traditional chat bot. As they tend to struggle to stay coherent when approaching the token limit. You could for example provide him with the entire lore of you D&D World or Coding project. 
 
 ## Project Status
 
