@@ -10,10 +10,11 @@ import java.util.Scanner;
 
 public class ConsoleAdapter implements Adapter {
 
+    public final static Scanner SCANNER = new Scanner(System.in);
+
     @Override
     public String receiveMessage() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 
     @Override
