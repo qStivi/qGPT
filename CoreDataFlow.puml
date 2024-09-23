@@ -1,0 +1,27 @@
+@startuml
+
+actor User
+User -> Adapter : sendMessage()
+Adapter -> CoreEngine : processMessage(input)
+CoreEngine -> MessageProcessor : process(input, userId)
+
+opt Complex Task
+    MessageProcessor -> TaskManager : delegate complex task (e.g. memory retrieval)
+
+    alt TaskManager Handle Memory
+        TaskManager -> MemoryManager : retrievePublicMemory()
+        MemoryManager -> TaskManager : return public memory
+    else TaskManager Perform Action(s)
+        TaskManager -> TaskManager : performAction(action)
+    else TaskManager Reevaluate and Return
+        TaskManager -> TaskManager : reevaluate and perform additional tasks
+    end
+
+    TaskManager -> MessageProcessor : return final result
+end
+
+MessageProcessor -> CoreEngine : return response
+CoreEngine -> Adapter : sendMessage(response)
+Adapter -> User : displayMessage(response)
+
+@enduml

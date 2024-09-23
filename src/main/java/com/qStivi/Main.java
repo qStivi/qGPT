@@ -6,8 +6,23 @@
 
 package com.qStivi;
 
+import com.qStivi.Adapters.ConsoleAdapter;
+
 public class Main {
     public static void main(String[] args) {
-        //TEST
+        var core = new CoreEngine(new MessageProcessor(new TaskManager(new MemoryManager())));
+        var adapter = new ConsoleAdapter();
+
+        while (true) {
+            var input = adapter.receiveMessage();
+
+            if (input.equals("exit")) {
+                break;
+            }
+
+            var userId = "1234";
+            var response = core.processMessage(input, userId);
+            adapter.sendMessage(response);
+        }
     }
 }
