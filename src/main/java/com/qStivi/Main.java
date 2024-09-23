@@ -7,13 +7,17 @@
 package com.qStivi;
 
 import com.qStivi.Adapters.ConsoleAdapter;
+import com.qStivi.config.Config;
 
 public class Main {
     public static void main(String[] args) {
         var core = new CoreEngine(new MessageProcessor(new TaskManager(new MemoryManager())));
         var adapter = new ConsoleAdapter();
 
+        new Config("config.properties", ConsoleAdapter.SCANNER).getConfiguration().getProperty("openai.token");
+
         while (true) {
+            System.out.print("You: ");
             var input = adapter.receiveMessage();
 
             if (input.equals("exit")) {

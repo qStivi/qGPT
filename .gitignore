@@ -41,13 +41,11 @@ mvnw.cmd
 .idea/**/gradle.xml
 .idea/**/gradleOutputFile.xml
 .idea/**/vcs.xml
-.idea/**/shelf/
 
 # Ignore IntelliJ project settings and IDE files
 # These files are user-specific and do not need to be in version control
 *.ipr
 *.iws
-.idea/
 
 # Ignore generated Java files (e.g. classes)
 /**/classes/
@@ -67,10 +65,10 @@ Thumbs.db
 
 # Logs and temporary files
 /logs
-*.log
 *.swp
 *.tmp
 
 # Exclude your environment variables and IDE settings
 .env
 .env.local
+/config.properties
