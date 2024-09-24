@@ -1,7 +1,3 @@
-[![CodeQL](https://github.com/qStivi/qGPT/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/qStivi/qGPT/actions/workflows/github-code-scanning/codeql) [![Dependabot Updates](https://github.com/qStivi/qGPT/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/qStivi/qGPT/actions/workflows/dependabot/dependabot-updates)
-
----
-
 # qGPT
 
 ## Overview
