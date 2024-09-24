@@ -6,6 +6,8 @@
 
 package com.qStivi.Adapters;
 
+import org.slf4j.LoggerFactory;
+
 import java.util.Scanner;
 
 public class ConsoleAdapter implements Adapter {
@@ -19,6 +21,7 @@ public class ConsoleAdapter implements Adapter {
 
     @Override
     public void sendMessage(String message) {
-        System.out.println("Bot: " + message);
+        var logger = LoggerFactory.getLogger(ConsoleAdapter.class);
+        logger.info("Bot: {}", message);
     }
 }
