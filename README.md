@@ -1,3 +1,7 @@
+[![CodeQL](https://github.com/qStivi/qGPT/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/qStivi/qGPT/actions/workflows/github-code-scanning/codeql)
+
+---
+
 # qGPT
 
 ## Overview
