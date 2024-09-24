@@ -7,7 +7,7 @@
 package com.qStivi.config;
 
 public class ConfigKeys {
-    public static final String OPENAI_TOKEN = "openai.token";
-    public static final String API_TIMEOUT = "api.timeout";
-    public static final String APP_MODE = "app.mode";
+    public static final String OPENAI_KEY = "openai.key";
+//    public static final String API_TIMEOUT = "api.timeout";
+//    public static final String APP_MODE = "app.mode";
 }

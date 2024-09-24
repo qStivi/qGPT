@@ -6,6 +6,8 @@
 
 package com.qStivi;
 
+import com.qStivi.openai.OpenAiException;
+
 public class CoreEngine {
 
     private final MessageProcessor messageProcessor;
@@ -16,7 +18,7 @@ public class CoreEngine {
     }
 
     // Method to process incoming messages from an adapter
-    public String processMessage(String input, String userId) {
+    public String processMessage(String input, String userId) throws OpenAiException {
         return messageProcessor.process(input, userId);
     }
 }

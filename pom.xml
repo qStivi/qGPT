@@ -89,5 +89,14 @@
             <version>RELEASE</version>
         </dependency>
         <!-- endregion -->
+
+        <!-- OpenAI -->
+        <!-- https://github.com/Lambdua/openai4j -->
+        <dependency>
+            <groupId>io.github.lambdua</groupId>
+            <artifactId>service</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <!-- endregion -->
     </dependencies>
 </project>
