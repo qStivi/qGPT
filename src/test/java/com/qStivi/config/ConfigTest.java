@@ -48,9 +48,7 @@ class ConfigTest {
         Configuration configuration = config.getConfiguration();
 
         // Act & Assert
-        assertEquals("30", configuration.getString(ConfigKeys.API_TIMEOUT));
-        assertEquals("production", configuration.getString(ConfigKeys.APP_MODE));
-        assertEquals("dummy-token", configuration.getString(ConfigKeys.OPENAI_TOKEN));
+        assertEquals("dummy-token", configuration.getString(ConfigKeys.OPENAI_KEY));
     }
 
     @Test
@@ -58,7 +56,7 @@ class ConfigTest {
         when(mockScanner.nextLine()).thenReturn("user-provided-token");
         Config config = new Config(tempConfigFile.toString(), mockScanner);
         Configuration configuration = config.getConfiguration();
-        assertEquals("user-provided-token", configuration.getString(ConfigKeys.OPENAI_TOKEN));
+        assertEquals("user-provided-token", configuration.getString(ConfigKeys.OPENAI_KEY));
     }
 
     @Test
@@ -83,9 +81,7 @@ class ConfigTest {
         try (Reader reader = Files.newBufferedReader(tempConfigFile)) {
             savedConfig.read(reader);
         }
-        assertEquals("saved-token", savedConfig.getString(ConfigKeys.OPENAI_TOKEN));
-        assertEquals("30", savedConfig.getString(ConfigKeys.API_TIMEOUT));
-        assertEquals("production", savedConfig.getString(ConfigKeys.APP_MODE));
+        assertEquals("saved-token", savedConfig.getString(ConfigKeys.OPENAI_KEY));
     }
 
     @Test
@@ -97,7 +93,7 @@ class ConfigTest {
                 .thenReturn("valid-token");
 
         // Act
-        String input = Config.promptForValidInput(ConfigKeys.OPENAI_TOKEN, mockScanner);
+        String input = Config.promptForValidInput(ConfigKeys.OPENAI_KEY, mockScanner);
 
         // Assert
         assertEquals("valid-token", input);
@@ -107,18 +103,14 @@ class ConfigTest {
     @Test
     void testExistingConfigurationLoading() throws IOException, ConfigurationException {
         PropertiesConfiguration existingConfig = new PropertiesConfiguration();
-        existingConfig.setProperty(ConfigKeys.OPENAI_TOKEN, "existing-token");
-        existingConfig.setProperty(ConfigKeys.API_TIMEOUT, "60");
-        existingConfig.setProperty(ConfigKeys.APP_MODE, "development");
+        existingConfig.setProperty(ConfigKeys.OPENAI_KEY, "existing-token");
         try (Writer writer = Files.newBufferedWriter(tempConfigFile)) {
             existingConfig.write(writer);
         }
 
         Config config = new Config(tempConfigFile.toString(), mockScanner);
         Configuration configuration = config.getConfiguration();
-        assertEquals("existing-token", configuration.getString(ConfigKeys.OPENAI_TOKEN));
-        assertEquals("60", configuration.getString(ConfigKeys.API_TIMEOUT));
-        assertEquals("development", configuration.getString(ConfigKeys.APP_MODE));
+        assertEquals("existing-token", configuration.getString(ConfigKeys.OPENAI_KEY));
         verifyNoInteractions(mockScanner);
     }
 

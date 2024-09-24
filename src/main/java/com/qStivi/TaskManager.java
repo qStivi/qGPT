@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 
 public class TaskManager {
 
+    private static final Logger logger = LoggerFactory.getLogger(TaskManager.class);
     private static final int MAX_REEVALUATIONS = 3;
     private final MemoryManager memoryManager;
-    private static final Logger logger = LoggerFactory.getLogger(TaskManager.class);
 
     // Constructor
     public TaskManager(MemoryManager memoryManager) {

@@ -22,11 +22,11 @@ import java.util.*;
 
 public class Config {
 
+    private final static Logger logger = LoggerFactory.getLogger(Config.class);
     private final Configuration configuration;
     private final Path configPath;
     private final Map<String, String> requiredKeysWithDefaults;
     private final Scanner scanner;
-    private final static Logger logger = LoggerFactory.getLogger(Config.class);
 
     public Config(String configFilePath, Scanner scanner) {
         logger.debug("Initializing configuration with file path: {}", configFilePath);
@@ -109,9 +109,9 @@ public class Config {
     private Map<String, String> initializeRequiredKeysWithDefaults() {
         logger.debug("Initializing required keys with defaults");
         Map<String, String> map = new HashMap<>();
-        map.put(ConfigKeys.OPENAI_TOKEN, null);
-        map.put(ConfigKeys.API_TIMEOUT, "30");
-        map.put(ConfigKeys.APP_MODE, "production");
+        map.put(ConfigKeys.OPENAI_KEY, null);
+//        map.put(ConfigKeys.API_TIMEOUT, "30");
+//        map.put(ConfigKeys.APP_MODE, "production");
         return Collections.unmodifiableMap(map);
     }
 
