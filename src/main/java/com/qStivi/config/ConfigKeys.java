@@ -6,8 +6,14 @@
 
 package com.qStivi.config;
 
+/**
+ * The {@code ConfigKeys} class holds constant values for configuration keys used throughout the application.
+ * This centralizes key management and reduces the likelihood of typographical errors.
+ */
 public class ConfigKeys {
-    public static final String OPENAI_TOKEN = "openai.token";
-    public static final String API_TIMEOUT = "api.timeout";
-    public static final String APP_MODE = "app.mode";
+
+    /**
+     * Configuration key for the OpenAI API key.
+     */
+    public static final String OPENAI_KEY = "openai.key";
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2024 Stephan Glaue
+  ~
+  ~ This source code is licensed under the MIT License found in the LICENSE file in the root directory of this source tree.
+  -->
+
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- @formatter:off -->
+            <pattern>%d{HH:mm:ss} %boldCyan(%-10.-10logger{0}) %red(%10.10X{jda.shard}) %boldGreen(%-28.-28M) %highlight(%-6level) %msg%n</pattern>
+            <!-- @formatter:on -->
+        </encoder>
+        <!-- Filter for all levels except DEBUG -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="DEBUG_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- @formatter:off -->
+            <pattern>%white(%d{HH:mm:ss}) %white(%-10.-10logger{0}) %white(%10.10X{jda.shard}) %white(%-28.-28M) %white(%-6level) %white(%msg%n)</pattern>
+            <!-- @formatter:on -->
+        </encoder>
+        <!-- Filter for DEBUG level -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- Use variable substitution with a default value -->
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="DEBUG_STDOUT"/>
+    </root>
+</configuration>

@@ -8,19 +8,47 @@ package com.qStivi;
 
 import com.qStivi.Adapters.ConsoleAdapter;
 import com.qStivi.config.Config;
+import com.qStivi.config.ConfigKeys;
+import com.qStivi.openai.OpenAiClient;
+import com.qStivi.openai.OpenAiException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * The {@code Main} class serves as the entry point for the qGPT application.
+ * It initializes the configuration, sets up the core engine, and manages the main interaction loop.
+ */
 public class Main {
-    public static void main(String[] args) {
-        var core = new CoreEngine(new MessageProcessor(new TaskManager(new MemoryManager())));
+
+    public static Config config;
+
+    /**
+     * The main method that starts the application.
+     *
+     * @param args Command-line arguments (not used).
+     * @throws OpenAiException If an error occurs during message processing.
+     */
+    public static void main(String[] args) throws OpenAiException {
+        DebugUtil.setupLogLevel();
+
+        // Very important note!
+        // The first log message HAS to happen AFTER the log level is set.
+        Logger logger = LoggerFactory.getLogger(Main.class);
+        logger.info("Starting...");
+
+        config = new Config("config.properties", new ConsoleAdapter());
+        var core = new CoreEngine(new MessageProcessor(new TaskManager(new MemoryManager()),
+                new OpenAiClient(config.getConfiguration().getString(ConfigKeys.OPENAI_KEY))));
         var adapter = new ConsoleAdapter();
 
-        new Config("config.properties", ConsoleAdapter.SCANNER).getConfiguration().getProperty("openai.token");
+        config.getConfiguration().getProperty("openai.token");
 
         while (true) {
-            System.out.print("You: ");
+            logger.info("You: ");
             var input = adapter.receiveMessage();
 
             if (input.equals("exit")) {
+                logger.info("Exiting...");
                 break;
             }
 
