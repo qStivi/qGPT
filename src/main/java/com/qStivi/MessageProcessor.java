@@ -12,7 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Processes incoming messages and delegates them to appropriate handlers.
+ * The {@code MessageProcessor} class processes incoming messages and delegates them
+ * to appropriate handlers based on the complexity of the task.
  */
 public class MessageProcessor {
 
@@ -23,10 +24,10 @@ public class MessageProcessor {
     private final OpenAiClient openAiClient;
 
     /**
-     * Constructs a MessageProcessor with the specified TaskManager and OpenAiClient.
+     * Constructs a {@code MessageProcessor} with the specified {@link TaskManager} and {@link OpenAiClient}.
      *
-     * @param taskManager  The TaskManager to delegate complex tasks to.
-     * @param openAiClient The OpenAiClient used for communicating with OpenAI services.
+     * @param taskManager   The {@link TaskManager} to delegate complex tasks to.
+     * @param openAiClient  The {@link OpenAiClient} used for communicating with OpenAI services.
      */
     public MessageProcessor(TaskManager taskManager, OpenAiClient openAiClient) {
         this.taskManager = taskManager;
@@ -34,7 +35,7 @@ public class MessageProcessor {
     }
 
     /**
-     * Processes the message and either handles it directly or delegates to the TaskManager.
+     * Processes the message and either handles it directly or delegates to the {@link TaskManager}.
      *
      * @param input  The message to process.
      * @param userId The ID of the user who sent the message.
@@ -69,7 +70,7 @@ public class MessageProcessor {
      * Currently, this is a placeholder that needs to be implemented.
      *
      * @param input The input message to evaluate.
-     * @return true if the message requires complex handling; false otherwise.
+     * @return {@code true} if the message requires complex handling; {@code false} otherwise.
      */
     boolean requiresComplexTask(String input) {
         // TODO: Implement actual complexity determination logic
