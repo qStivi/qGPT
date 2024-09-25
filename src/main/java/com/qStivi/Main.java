@@ -14,11 +14,21 @@ import com.qStivi.openai.OpenAiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The {@code Main} class serves as the entry point for the qGPT application.
+ * It initializes the configuration, sets up the core engine, and manages the main interaction loop.
+ */
 public class Main {
 
     public static final Config config = new Config("config.properties", new ConsoleAdapter());
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
+    /**
+     * The main method that starts the application.
+     *
+     * @param args Command-line arguments (not used).
+     * @throws OpenAiException If an error occurs during message processing.
+     */
     public static void main(String[] args) throws OpenAiException {
         DebugUtil.setupLogLevel();
         logger.info("Starting...");

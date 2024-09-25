@@ -8,7 +8,16 @@ package com.qStivi;
 
 import org.slf4j.LoggerFactory;
 
+/**
+ * The {@code DebugUtil} class provides utility methods related to debugging and logging.
+ */
 public class DebugUtil {
+
+    /**
+     * Sets up the log level based on whether the application is running in debug mode.
+     * If the JVM is started with the debugging agent, the log level is set to DEBUG;
+     * otherwise, it defaults to INFO.
+     */
     public static void setupLogLevel() {
         var logger = LoggerFactory.getLogger(DebugUtil.class);
         boolean isDebugging = java.lang.management.ManagementFactory.getRuntimeMXBean()

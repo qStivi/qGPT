@@ -26,7 +26,7 @@ public class OpenAiClient {
     private final String defaultSystemMessage;
 
     /**
-     * Constructs an OpenAiClient with the specified API key and default settings.
+     * Constructs an {@code OpenAiClient} with the specified API key and default settings.
      *
      * @param apiKey The OpenAI API key.
      */
@@ -35,7 +35,7 @@ public class OpenAiClient {
     }
 
     /**
-     * Constructs an OpenAiClient with custom settings.
+     * Constructs an {@code OpenAiClient} with custom settings.
      *
      * @param apiKey               The OpenAI API key.
      * @param timeout              The timeout duration for API requests.
@@ -53,10 +53,10 @@ public class OpenAiClient {
     }
 
     /**
-     * Constructs an OpenAiClient with a provided OpenAiService.
+     * Constructs an {@code OpenAiClient} with a provided {@link OpenAiService}.
      * Useful for testing with a mocked service.
      *
-     * @param service              The OpenAiService instance.
+     * @param service              The {@link OpenAiService} instance.
      * @param modelName            The name of the model to use.
      * @param maxTokens            The maximum number of tokens in the response.
      * @param defaultSystemMessage The default system message to start the conversation.
@@ -74,7 +74,7 @@ public class OpenAiClient {
      * Sends a user input to the OpenAI service and returns the assistant's response.
      *
      * @param input The user's input message.
-     * @return The assistant's response.
+     * @return The assistant's response as a {@code String}.
      * @throws OpenAiException If an error occurs during the API request.
      */
     public String sendRequest(String input) throws OpenAiException {
@@ -114,7 +114,7 @@ public class OpenAiClient {
     /**
      * Returns a copy of the conversation messages.
      *
-     * @return A list of chat messages.
+     * @return A list of {@link ChatMessage} representing the conversation history.
      */
     public List<ChatMessage> getMessages() {
         return new ArrayList<>(messages);

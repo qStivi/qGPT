@@ -13,10 +13,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * The {@code ConsoleAdapter} class implements the {@link Adapter} interface to facilitate
+ * message communication through the console. It handles sending messages by logging them
+ * and receiving messages by reading input from the standard input stream.
+ */
 public class ConsoleAdapter implements Adapter {
+
     private static final int PASTE_TIMEOUT_MS = 500; // Adjust as needed
     private final Logger logger = LoggerFactory.getLogger(ConsoleAdapter.class);
 
+    /**
+     * Receives a message from the console input.
+     * This method reads lines from the console until a timeout is reached or EOF is detected.
+     *
+     * @return The received message as a {@code String}, or {@code null} if an error occurs.
+     */
     @Override
     public String receiveMessage() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -49,6 +61,11 @@ public class ConsoleAdapter implements Adapter {
         return messageBuilder.toString().trim();
     }
 
+    /**
+     * Sends a message by logging it as an informational message.
+     *
+     * @param message The message to be sent.
+     */
     @Override
     public void sendMessage(String message) {
         logger.info("Bot: {}", message);

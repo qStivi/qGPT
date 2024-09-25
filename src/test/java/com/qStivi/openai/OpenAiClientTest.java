@@ -18,11 +18,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+/**
+ * The {@code OpenAiClientTest} class contains unit tests for the {@link OpenAiClient} class.
+ * It verifies the behavior of sending requests, handling responses, resetting conversations,
+ * and exception scenarios.
+ */
 public class OpenAiClientTest {
 
     private OpenAiService mockService;
     private OpenAiClient openAiClient;
 
+    /**
+     * Sets up the test environment by mocking the {@link OpenAiService} and initializing the {@link OpenAiClient}.
+     */
     @BeforeEach
     public void setUp() {
         // Mock the OpenAiService
@@ -36,6 +44,11 @@ public class OpenAiClientTest {
         openAiClient = new OpenAiClient(mockService, modelName, maxTokens, defaultSystemMessage);
     }
 
+    /**
+     * Tests that a successful request returns the expected assistant response and updates the conversation history.
+     *
+     * @throws OpenAiException If an error occurs during the API request.
+     */
     @Test
     public void testSendRequest_Success() throws OpenAiException {
         // Given
@@ -73,6 +86,9 @@ public class OpenAiClientTest {
         assertEquals(assistantResponse, messages.get(2).getTextContent());
     }
 
+    /**
+     * Tests that an {@link OpenAiException} is thrown when no choices are returned from the service.
+     */
     @Test
     public void testSendRequest_NoChoices() {
         // Arrange
@@ -85,6 +101,9 @@ public class OpenAiClientTest {
         assertThrows(OpenAiException.class, () -> openAiClient.sendRequest(userInput));
     }
 
+    /**
+     * Tests that an {@link OpenAiException} is thrown when the service itself throws an exception.
+     */
     @Test
     public void testSendRequest_ServiceThrowsException() {
         // Arrange
@@ -95,6 +114,11 @@ public class OpenAiClientTest {
         assertThrows(OpenAiException.class, () -> openAiClient.sendRequest(userInput));
     }
 
+    /**
+     * Tests that resetting the conversation clears the history and retains only the default system message.
+     *
+     * @throws OpenAiException If an error occurs during message processing.
+     */
     @Test
     public void testResetConversation() throws OpenAiException {
         // Given

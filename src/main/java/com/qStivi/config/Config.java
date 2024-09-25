@@ -21,6 +21,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * The {@code Config} class manages the application configuration by reading from and writing to
+ * a properties file. It ensures that all required configuration keys are present, prompting the
+ * user for input if necessary.
+ */
 public class Config {
 
     private final static Logger logger = LoggerFactory.getLogger(Config.class);
@@ -29,6 +34,13 @@ public class Config {
     private final Map<String, String> requiredKeysWithDefaults;
     private final ConsoleAdapter consoleAdapter;
 
+    /**
+     * Constructs a {@code Config} instance with the specified configuration file path and adapter.
+     *
+     * @param configFilePath The path to the configuration properties file.
+     * @param consoleAdapter The {@link ConsoleAdapter} used for prompting user input.
+     * @throws IllegalArgumentException If the configuration file path is null or empty.
+     */
     public Config(String configFilePath, ConsoleAdapter consoleAdapter) {
         logger.debug("Initializing configuration with file path: {}", configFilePath);
 
@@ -44,6 +56,14 @@ public class Config {
         this.configuration = initializeConfiguration();
     }
 
+    /**
+     * Prompts the user for valid input for a given configuration key using the provided adapter.
+     * Continues prompting until a non-empty input is received.
+     *
+     * @param key            The configuration key for which input is required.
+     * @param consoleAdapter The {@link ConsoleAdapter} used to receive user input.
+     * @return The validated user input as a {@code String}.
+     */
     public static String promptForValidInput(String key, ConsoleAdapter consoleAdapter) {
         logger.debug("Prompting user for input for key: {}", key);
         String value;
@@ -57,10 +77,22 @@ public class Config {
         return value.trim();
     }
 
+    /**
+     * Retrieves the current configuration.
+     *
+     * @return The {@link Configuration} object containing all configuration properties.
+     */
     public Configuration getConfiguration() {
         return configuration;
     }
 
+    /**
+     * Initializes the configuration by reading from the properties file and ensuring all required
+     * keys are present. If keys are missing, prompts the user for input or sets default values.
+     *
+     * @return The initialized {@link Configuration} object.
+     * @throws RuntimeException If an error occurs during initialization.
+     */
     private Configuration initializeConfiguration() {
         logger.debug("Initializing configuration");
         try {
@@ -114,6 +146,11 @@ public class Config {
         }
     }
 
+    /**
+     * Initializes the map of required configuration keys along with their default values.
+     *
+     * @return An unmodifiable map containing required keys and their default values.
+     */
     Map<String, String> initializeRequiredKeysWithDefaults() {
         logger.debug("Initializing required keys with defaults");
         Map<String, String> map = new HashMap<>();
@@ -121,6 +158,12 @@ public class Config {
         return Collections.unmodifiableMap(map);
     }
 
+    /**
+     * Prompts the user for values corresponding to the specified list of configuration keys.
+     *
+     * @param keys The list of configuration keys for which values are required.
+     * @return A map containing the configuration keys and their corresponding user-provided values.
+     */
     private Map<String, String> promptUserForConfigValues(List<String> keys) {
         logger.debug("Prompting user for values for keys: {}", keys);
         Map<String, String> map = new HashMap<>();

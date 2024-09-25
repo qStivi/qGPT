@@ -14,12 +14,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * The {@code MessageProcessorTest} class contains unit tests for the {@link MessageProcessor} class.
+ * It verifies the correct delegation of tasks, handling of simple and complex messages,
+ * and exception propagation.
+ */
 public class MessageProcessorTest {
 
     private TaskManager mockTaskManager;
     private OpenAiClient mockOpenAiClient;
     private MessageProcessor messageProcessor;
 
+    /**
+     * Sets up the test environment by mocking the {@link TaskManager} and {@link OpenAiClient},
+     * and initializing the {@link MessageProcessor}.
+     */
     @BeforeEach
     public void setUp() {
         mockTaskManager = mock(TaskManager.class);
@@ -27,16 +36,27 @@ public class MessageProcessorTest {
         messageProcessor = new MessageProcessor(mockTaskManager, mockOpenAiClient);
     }
 
+    /**
+     * Tests that processing a null input throws an {@link IllegalArgumentException}.
+     */
     @Test
     public void testProcess_NullInput_ThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> messageProcessor.process(null, "user123"));
     }
 
+    /**
+     * Tests that processing with a null userId throws an {@link IllegalArgumentException}.
+     */
     @Test
     public void testProcess_NullUserId_ThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> messageProcessor.process("Hello", null));
     }
 
+    /**
+     * Tests that a simple message is handled directly by the {@link OpenAiClient} without delegating to the {@link TaskManager}.
+     *
+     * @throws OpenAiException If an error occurs during message processing.
+     */
     @Test
     public void testProcess_SimpleMessage_HandlesDirectly() throws OpenAiException {
         // Arrange
@@ -54,6 +74,11 @@ public class MessageProcessorTest {
         verify(mockOpenAiClient, times(1)).sendRequest(input);
     }
 
+    /**
+     * Tests that a complex message is delegated to the {@link TaskManager} and not handled directly by the {@link OpenAiClient}.
+     *
+     * @throws OpenAiException If an error occurs during message processing.
+     */
     @Test
     public void testProcess_ComplexMessage_DelegatesToTaskManager() throws OpenAiException {
         // Arrange
@@ -71,6 +96,11 @@ public class MessageProcessorTest {
         verify(mockOpenAiClient, never()).sendRequest(anyString());
     }
 
+    /**
+     * Tests that an {@link OpenAiException} thrown by the {@link OpenAiClient} is propagated.
+     *
+     * @throws OpenAiException If an error occurs during message processing.
+     */
     @Test
     public void testProcess_OpenAiException_IsPropagated() throws OpenAiException {
         // Arrange
@@ -78,10 +108,13 @@ public class MessageProcessorTest {
         String userId = "user123";
         when(mockOpenAiClient.sendRequest(input)).thenThrow(new OpenAiException("API error"));
 
-        // Act
+        // Act & Assert
         assertThrows(OpenAiException.class, () -> messageProcessor.process(input, userId));
     }
 
+    /**
+     * Tests that {@link MessageProcessor#requiresComplexTask(String)} correctly identifies complex messages.
+     */
     @Test
     public void testRequiresComplexTask_ReturnsTrueForComplexMessage() {
         // Arrange
@@ -94,6 +127,9 @@ public class MessageProcessorTest {
         assertTrue(result);
     }
 
+    /**
+     * Tests that {@link MessageProcessor#requiresComplexTask(String)} correctly identifies simple messages.
+     */
     @Test
     public void testRequiresComplexTask_ReturnsFalseForSimpleMessage() {
         // Arrange
