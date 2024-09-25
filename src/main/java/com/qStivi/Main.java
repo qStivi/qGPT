@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
 
-    public static final Config config = new Config("config.properties", ConsoleAdapter.SCANNER);
+    public static final Config config = new Config("config.properties", new ConsoleAdapter());
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws OpenAiException {

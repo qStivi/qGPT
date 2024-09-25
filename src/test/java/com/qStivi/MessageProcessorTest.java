@@ -79,9 +79,7 @@ public class MessageProcessorTest {
         when(mockOpenAiClient.sendRequest(input)).thenThrow(new OpenAiException("API error"));
 
         // Act
-        messageProcessor.process(input, userId);
-
-        // Assert is handled by the expected exception
+        assertThrows(OpenAiException.class, () -> messageProcessor.process(input, userId));
     }
 
     @Test
