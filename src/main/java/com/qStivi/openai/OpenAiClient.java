@@ -31,7 +31,7 @@ public class OpenAiClient {
      * @param apiKey The OpenAI API key.
      */
     public OpenAiClient(String apiKey) {
-        this(apiKey, Duration.ofSeconds(30), "gpt-4o-mini", 50, "You are a cute cat and will speak as such.");
+        this(apiKey, Duration.ofSeconds(30), "gpt-4o-mini", 5000, "You are a cute cat and will speak as such.");
     }
 
     /**
