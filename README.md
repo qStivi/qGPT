@@ -23,30 +23,41 @@ The primary goal of this project is to develop a conversational AI that serves a
 - **Concurrency and Scalability**: Multiple inner bots can run concurrently, ensuring qGPT can handle multiple user interactions or tasks simultaneously.
 - **Communication and Task Management**: The main bot communicates with inner bots via a task management system, tracking task progress and retrieving results without interrupting the conversation flow.
 
-This architecture allows qGPT to stay focused on user interactions while delegating intensive tasks, optimizing both performance and responsiveness.
+*Note: Inner Thoughts Bots are currently in the drafting stage and are planned for future implementation.*
 
 ## Key Features
 
 - **Modular Architecture**: qGPT is structured with a core engine and separate interface modules (adapters), allowing it to connect to different platforms through well-defined interfaces. This design promotes scalability and ease of maintenance.
-- **Inner Thoughts Bots**: Offload complex tasks like memory searches or data processing to separate bots, allowing the main bot to maintain high responsiveness.
+- **Inner Thoughts Bots**: Offload complex tasks like memory searches or data processing to separate bots, allowing the main bot to maintain high responsiveness. *(Planned)*
 - **Memory Management System**:
-  - **Global Memory**: Stores public conversation data accessible to all users and interfaces.
-  - **User Memory**: Maintains private, user-specific data for personalized interactions, ensuring data privacy and confidentiality.
+  - **Global Memory**: Stores public conversation data accessible to all users and interfaces. *(Planned)*
+  - **User Memory**: Maintains private, user-specific data for personalized interactions, ensuring data privacy and confidentiality. *(Planned)*
 - **Contextual Formatting**: Responses are formatted according to the interface being used, providing a seamless user experience across platforms.
-- **Multi-Threading and Concurrency**: Each interface module operates on its own thread, enabling concurrent interactions without performance degradation. The inner thoughts bots can also run in parallel with the main bot.
 - **Extensibility**: The system is designed to allow new interfaces and functionalities to be added with minimal impact on existing components.
 
 ## Use Cases
 
 - **In-Game Assistant**: Interacts with players in-game, responds to chat messages, executes commands, and can adopt roles or personas to enhance gameplay.
-- **Website Chatbot**: Serves as an interactive assistant on websites, capable of guiding users, answering questions, and providing support.
 - **Personal Chat Buddy**: Available for direct messages, offering personalized conversations that adapt over time to the user's preferences and communication style.
-- **Task Offloading with Inner Thoughts Bots**: Offload intensive operations like data retrieval or complex calculations, keeping user interactions smooth and uninterrupted.
-- **Project Help**: You could aks the bot to keep vast amounts of information about a project, maybe even files. Using the memory search functionality the bot could then assist you more effectively than a traditional chat bot. As they tend to struggle to stay coherent when approaching the token limit. You could for example provide him with the entire lore of you D&D World or Coding project. 
+- **Task Offloading with Inner Thoughts Bots**: Offload intensive operations like data retrieval or complex calculations, keeping user interactions smooth and uninterrupted. *(Planned)*
+- **Project Help**: You could ask the bot to keep vast amounts of information about a project, maybe even files. Using the memory search functionality, the bot could then assist you more effectively than a traditional chatbot, which tends to struggle to stay coherent when approaching the token limit. For example, you could provide it with the entire lore of your D&D world or coding project. *(Planned)*
 
 ## Project Status
 
-This project is in its early stages and is being developed for fun during free time. It's a personal exploration into the capabilities of conversational AI, modular software design, and multi-bot systems.
+As of September 2024, **qGPT** is actively evolving with several key milestones achieved:
+
+- **Core Architecture Completed**: The foundational modular architecture has been successfully implemented, allowing for seamless integration of various adapters.
+- **Initial Adapters Developed**: Adapters for console interactions have been developed and tested.
+- **Comprehensive Testing Suite**: A suite of unit tests ensures the reliability and stability of core components, facilitating ongoing development and maintenance.
+- **Documentation Enhanced**: Detailed documentation, including UML diagrams and code comments, provides clarity on system architecture and facilitates contributions.
+
+*Planned Features:*
+
+- **Inner Thoughts Bots**: Designing and implementing secondary bots for task offloading.
+- **Memory Management System**: Developing both global and user-specific memory systems.
+- **Expanding Platform Integrations**: Developing adapters for additional platforms such as Discord, Slack, and mobile applications.
+
+**qGPT** is progressing steadily towards its vision of becoming a versatile and intelligent chatbot capable of engaging users across a multitude of platforms with personalized and meaningful interactions.
 
 ## Vision
 
