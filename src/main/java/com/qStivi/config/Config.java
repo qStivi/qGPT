@@ -6,6 +6,7 @@
 
 package com.qStivi.config;
 
+import com.qStivi.Adapters.ConsoleAdapter;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.ex.ConfigurationException;
@@ -26,22 +27,29 @@ public class Config {
     private final Configuration configuration;
     private final Path configPath;
     private final Map<String, String> requiredKeysWithDefaults;
-    private final Scanner scanner;
+    private final ConsoleAdapter consoleAdapter;
 
-    public Config(String configFilePath, Scanner scanner) {
+    public Config(String configFilePath, ConsoleAdapter consoleAdapter) {
         logger.debug("Initializing configuration with file path: {}", configFilePath);
+
+        // Check if the configFilePath is null or empty
+        if (configFilePath == null || configFilePath.trim().isEmpty()) {
+            logger.error("Config file path cannot be null");
+            throw new IllegalArgumentException("Config file path cannot be null or empty");
+        }
+
         this.configPath = Paths.get(configFilePath);
-        this.scanner = scanner;
+        this.consoleAdapter = consoleAdapter;
         this.requiredKeysWithDefaults = initializeRequiredKeysWithDefaults();
         this.configuration = initializeConfiguration();
     }
 
-    public static String promptForValidInput(String key, Scanner scanner) {
+    public static String promptForValidInput(String key, ConsoleAdapter consoleAdapter) {
         logger.debug("Prompting user for input for key: {}", key);
         String value;
         do {
             logger.info("Please enter the value for '{}': ", key);
-            value = scanner.nextLine();
+            value = consoleAdapter.receiveMessage();
             if (value == null || value.trim().isEmpty()) {
                 logger.warn("Value cannot be empty. Please try again.");
             }
@@ -106,12 +114,10 @@ public class Config {
         }
     }
 
-    private Map<String, String> initializeRequiredKeysWithDefaults() {
+    Map<String, String> initializeRequiredKeysWithDefaults() {
         logger.debug("Initializing required keys with defaults");
         Map<String, String> map = new HashMap<>();
         map.put(ConfigKeys.OPENAI_KEY, null);
-//        map.put(ConfigKeys.API_TIMEOUT, "30");
-//        map.put(ConfigKeys.APP_MODE, "production");
         return Collections.unmodifiableMap(map);
     }
 
@@ -120,7 +126,7 @@ public class Config {
         Map<String, String> map = new HashMap<>();
 
         for (String key : keys) {
-            String value = promptForValidInput(key, scanner);
+            String value = promptForValidInput(key, consoleAdapter);
             map.put(key, value);
         }
 
