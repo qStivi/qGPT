@@ -95,7 +95,7 @@
         <dependency>
             <groupId>io.github.lambdua</groupId>
             <artifactId>service</artifactId>
-            <version>RELEASE</version>
+            <version>0.22.2</version>
         </dependency>
         <!-- endregion -->
     </dependencies>
