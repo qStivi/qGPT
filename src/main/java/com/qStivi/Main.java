@@ -20,8 +20,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
 
-    public static final Config config = new Config("config.properties", new ConsoleAdapter());
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    public static Config config;
 
     /**
      * The main method that starts the application.
@@ -31,8 +30,13 @@ public class Main {
      */
     public static void main(String[] args) throws OpenAiException {
         DebugUtil.setupLogLevel();
+
+        // Very important note!
+        // The first log message HAS to happen AFTER the log level is set.
+        Logger logger = LoggerFactory.getLogger(Main.class);
         logger.info("Starting...");
 
+        config = new Config("config.properties", new ConsoleAdapter());
         var core = new CoreEngine(new MessageProcessor(new TaskManager(new MemoryManager()),
                 new OpenAiClient(config.getConfiguration().getString(ConfigKeys.OPENAI_KEY))));
         var adapter = new ConsoleAdapter();
